@@ -9,7 +9,7 @@ import static java.lang.Thread.sleep;
 
 public class Main {
     public static void main(String[] args) throws InterruptedException {
-        System.setProperty("webdriver.chrome.driver", "/Users/jym0222/Desktop/Apps/Bootcamp/bootCamp/chromedriver");
+        System.setProperty("webdriver.chrome.driver", "/Users/jxr20920/Downloads/chromedriver");
         WebDriver driver = new ChromeDriver();
 //        System.setProperty("webdriver.gecko.driver", "/Users/jym0222/Desktop/Apps/Bootcamp/bootCamp/chromedriver");
 //        WebDriver driver = new FirefoxDriver();
