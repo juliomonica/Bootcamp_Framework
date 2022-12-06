@@ -1,21 +1,11 @@
+import Steps.ElementsSteps;
 import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.chrome.ChromeDriver;
-import org.testng.*;
-import org.testng.annotations.AfterMethod;
-import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
-public class ElementsTests {
-    WebDriver _driver;
+public class ElementsTests extends BaseTest {
 
-    @BeforeMethod
-    public void beforeMethod() {
-        System.setProperty("webdriver.chrome.driver", "/Users/jxr20920/Downloads/chromedriver");
-        this._driver = new ChromeDriver();
-        this._driver.get("https://www.github.com");
-    }
+    ElementsSteps elementsSteps = new ElementsSteps(_driver);
 
     @Test
     public void HelloWorldTest() {
@@ -25,7 +15,7 @@ public class ElementsTests {
         CustomAssertions.isElementDisplayed(testTextBox.isDisplayed(), url, view);
     }
 
-    @Test
+    @Test (description = "Testing that the URL is as expected", groups = "SmokeSuite", priority = 1)
     public void TestURLisCorrect () {
         String expectedURL = "https://www.github.com/";
         String actualURL = _driver.getCurrentUrl();
@@ -33,8 +23,18 @@ public class ElementsTests {
         CustomAssertions.isURLValid(expectedURL, actualURL);
     }
 
-    @AfterMethod
-    public void tearDown() {
-        _driver.quit();
+    @Test (description = "Testing that the page title is as expected")
+    public void testGitHubPageTile() {
+        String titleExpected = "GitHub";
+        String titleActual = _driver.getTitle();
+        CustomAssertions.isTitleValid(titleExpected, titleActual);
     }
+
+    @Test (description = "Testing negative scenario for page title as expected", groups = "SmokeSuite", priority = 2)
+    public void testGitHubPageTitleNegative () {
+        String titleExpected = "GITHUB";
+        String titleActual = elementsSteps.getTitle();
+        CustomAssertions.isTitleValidNegative(titleExpected, titleActual);
+    }
+
 }
