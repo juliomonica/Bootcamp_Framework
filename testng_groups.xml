@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite name="Elements Tests" thread-count="4" parallel="methods">
+    <test verbose="2" preserve-order="true" name="/Users/jym0222/Desktop/Apps/Bootcamp_Framework">
+        <groups>
+            <run>
+                <include name="SmokeSuite"></include>
+            </run>
+        </groups>
+        <classes>
+            <class name="tests.ElementsTests"/>
+        </classes>
+    </test>
+</suite>

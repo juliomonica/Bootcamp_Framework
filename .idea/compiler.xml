@@ -9,5 +9,8 @@
         <module name="bootCamp" />
       </profile>
     </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="bootCamp" target="1.8" />
+    </bytecodeTargetLevel>
   </component>
 </project>
