@@ -7,11 +7,15 @@ import steps.ElementsSteps;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.testng.annotations.Test;
+import steps.PracticeFormSteps;
+import steps.SignUpSteps;
 
 import java.time.Duration;
 
 public class ElementsTests extends BaseTest {
     ElementsSteps elementsSteps = new ElementsSteps(driver);
+    SignUpSteps signUpSteps = new SignUpSteps(driver);
+    PracticeFormSteps practiceFormSteps = new PracticeFormSteps(driver);
 
     @Test
     public void HelloWorldTest() {
@@ -40,7 +44,7 @@ public class ElementsTests extends BaseTest {
     @Test(description = "Testing dynamic elements",groups = "SmokeSuite")
     public void TestDynamicProperties () throws InterruptedException {
         //driver.findElement(By.name("q")).sendKeys("userNameOne");
-        driver.findElement(By.xpath("//a[contains(text(),'Sign up')]")).click();
+        signUpSteps.clickSignUpLink();
         //Thread.sleep(30000);
         //driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
 //        WebElement txtEmail = new WebDriverWait(driver, Duration.ofSeconds(10)).until(
@@ -82,5 +86,15 @@ public class ElementsTests extends BaseTest {
 
         System.out.println("Test finished");
 
+    }
+
+    @Test(description = "Test to select Male gender in Practice Form")
+    public void testSelectMaleGender() {
+        practiceFormSteps.selectGender("Male");
+    }
+
+    @Test(description = "Test to select Other gender in Practice Form")
+    public void testSelectOtherGender() {
+        practiceFormSteps.selectGender("Other");
     }
 }

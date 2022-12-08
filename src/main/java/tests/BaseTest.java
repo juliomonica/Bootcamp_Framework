@@ -12,8 +12,11 @@ public class BaseTest {
     public WebDriver driver = getDriver();
 
     private WebDriver getDriver() {
-        setupDriver("chrome");
-        driver.get("https://www.github.com");
+        setupDriver("firefox");
+        //This is to work with Julio's class (remove comment if needed)
+        //driver.get("https://www.github.com");
+        //This is to work with Jenny's class
+        driver.get("https://demoqa.com/automation-practice-form");
         return driver;
     }
 
@@ -30,7 +33,8 @@ public class BaseTest {
                 driver = new ChromeDriver();
                 break;
             case "firefox":
-                System.setProperty("webdriver.gecko.driver", System.getProperty("user.dir") + File.separator + "drivers" + File.separator + "geckodriver");
+                System.setProperty("webdriver.gecko.driver", "/Users/jxr20920/Downloads/geckodriver_");
+                //System.setProperty("webdriver.gecko.driver", System.getProperty("user.dir") + File.separator + "drivers" + File.separator + "geckodriver");
                 driver = new FirefoxDriver();
                 break;
             default:
