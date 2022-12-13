@@ -135,7 +135,7 @@ public class ElementsTests extends BaseTest {
         miscellaneousSteps.scrollToButtonExample();
         miscellaneousSteps.hoverOverButtonExample();
         String hoverStatus = miscellaneousSteps.getHoverStatus();
-        print(hoverStatus);
+        print("Hover status: " + hoverStatus);
         CustomAssertions.isTextEqual("Event Triggered", hoverStatus);
     }
 }

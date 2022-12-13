@@ -23,14 +23,17 @@ public class MiscellaneousSteps extends BaseSteps{
     }
 
     public void scrollToButtonExample() {
+        System.out.println("Scrolling to OnMouseOver button");
         scrollToWebElement(hoverOverExample.getBtnHoverable());
     }
 
     public void hoverOverButtonExample() {
+        System.out.println("Hover over OnMouseOver button");
         hoverOverWebElement(hoverOverExample.getBtnHoverable());
     }
 
     public String getHoverStatus() {
+        System.out.println("Get the status of the Hover result");
         return getElementText(hoverOverExample.getpHoverMouseStatus());
     }
 

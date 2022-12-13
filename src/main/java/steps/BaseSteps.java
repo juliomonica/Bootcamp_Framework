@@ -40,9 +40,11 @@ public class BaseSteps {
 
     public void scrollToWebElement(WebElement scrollTo) {
         if (webDriver instanceof FirefoxDriver) {
+            System.out.println("Scrolling in Firefox");
             js.executeScript("arguments[0].scrollIntoView(true);", scrollTo);
         }
         if (webDriver instanceof ChromeDriver) {
+            System.out.println("Scrolling in Chrome");
             customActions
                     .scrollToElement(scrollTo)
                     .perform();
