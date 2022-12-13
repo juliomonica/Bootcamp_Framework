@@ -3,10 +3,12 @@ package tests;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.ui.*;
+import org.testng.Assert;
 import steps.ElementsSteps;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.testng.annotations.Test;
+import steps.MiscellaneousSteps;
 import steps.PracticeFormSteps;
 import steps.SignUpSteps;
 
@@ -16,6 +18,7 @@ public class ElementsTests extends BaseTest {
     ElementsSteps elementsSteps = new ElementsSteps(driver);
     SignUpSteps signUpSteps = new SignUpSteps(driver);
     PracticeFormSteps practiceFormSteps = new PracticeFormSteps(driver);
+    MiscellaneousSteps miscellaneousSteps = new MiscellaneousSteps(driver);
 
     @Test
     public void HelloWorldTest() {
@@ -90,11 +93,49 @@ public class ElementsTests extends BaseTest {
 
     @Test(description = "Test to select Male gender in Practice Form")
     public void testSelectMaleGender() {
+        driver.get("https://demoqa.com/automation-practice-form");
         practiceFormSteps.selectGender("Male");
     }
 
     @Test(description = "Test to select Other gender in Practice Form")
     public void testSelectOtherGender() {
+        driver.get("https://demoqa.com/automation-practice-form");
         practiceFormSteps.selectGender("Other");
+    }
+
+    @Test(description = "Test drop downs or selects by visible text")
+    public void testDropDownSearchEngine() throws InterruptedException {
+        String expectedSearchEngine = "Yahoo";
+        miscellaneousSteps.navigateToURL("https://chercher.tech/practice/practice-dropdowns-selenium-webdriver");
+        miscellaneousSteps.selectSearchEngine(expectedSearchEngine);
+        String selectedSearchEngine = miscellaneousSteps.getSelectedSearchEngine();
+        print("Selected option is: " + selectedSearchEngine);
+        Assert.assertEquals(selectedSearchEngine, expectedSearchEngine);
+    }
+
+    @Test(description = "Negative scenario to ensure that selecting index 1 is not Yahoo option")
+    public void testDropDownSearchEngineByIndexNeg() {
+        String expectedSearchEngine = "Yahoo";
+        miscellaneousSteps.navigateToURL("https://chercher.tech/practice/practice-dropdowns-selenium-webdriver");
+        miscellaneousSteps.selectSearchEngineByIndex(1);
+        String actualSelectedSearchEngine = miscellaneousSteps.getSelectedSearchEngine();
+        print("Selected option is: " + actualSelectedSearchEngine);
+        Assert.assertNotEquals(actualSelectedSearchEngine, expectedSearchEngine);
+    }
+
+    @Test(description = "Test drag and drop with Actions")
+    public void dragDropDivYellowIntoRedDiv() {
+        driver.get("https://testpages.herokuapp.com/styled/drag-drop-javascript.html");
+        miscellaneousSteps.dragDivIntoDiv();
+    }
+
+    @Test(description = "Test hover over web element with Actions")
+    public void hoverOver() {
+        driver.get("https://testpages.herokuapp.com/styled/events/javascript-events.html");
+        miscellaneousSteps.scrollToButtonExample();
+        miscellaneousSteps.hoverOverButtonExample();
+        String hoverStatus = miscellaneousSteps.getHoverStatus();
+        print(hoverStatus);
+        CustomAssertions.isTextEqual("Event Triggered", hoverStatus);
     }
 }

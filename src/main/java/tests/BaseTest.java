@@ -13,10 +13,8 @@ public class BaseTest {
 
     private WebDriver getDriver() {
         setupDriver("firefox");
-        //This is to work with Julio's class (remove comment if needed)
-        //driver.get("https://www.github.com");
-        //This is to work with Jenny's class
-        driver.get("https://demoqa.com/automation-practice-form");
+        driver.manage().window().maximize();
+        driver.get("https://www.github.com");
         return driver;
     }
 
@@ -40,6 +38,10 @@ public class BaseTest {
             default:
                 System.out.println("Web Driver was not found in directory");
         }
+    }
+
+    public void print(String text) {
+        System.out.println(text);
     }
 
     @AfterMethod(alwaysRun = true)
